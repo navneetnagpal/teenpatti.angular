@@ -1,0 +1,111 @@
+script(type='text/ng-template',id='playing.card.set.html')
+	div.cards-closed-set(ng-show="cardSet.closed")
+		div.playing-card.closed(ng-style='getCardStyle(0)')
+		div.playing-card.closed(ng-style='getCardStyle(1)')
+		div.playing-card.closed(ng-style='getCardStyle(2)')
+		button.see-cards.btn.btn-warning(ng-click='seeMyCards()') See
+	div.actual-cards(ng-show="!cardSet.closed")
+		div.playing-card.open(ng-style='getCardStyle({{$index}})',playing-card="",ng-repeat='card in cardSet.cards',card="card")
+
+script(type='text/ng-template',id='playing.card.html')
+	div.card(class='{{card.type}}')
+		span.icon.icon-small.left(class='{{card.type}}')
+		span.text-small.left  {{card.name}}
+		span.icon.icon-large.center(class='{{card.type}} {{card.name}}')
+
+script(type='text/ng-template',id='table.dealer.html')
+	div.dealer
+		div.icon.icon-large.dealer
+script(type='text/ng-template',id='table.bet.html')
+	div.bet-info
+		div.bet.alert.alert-warning
+			span.pot-amount ${{table.amount| number}} 
+
+script(type='text/ng-template',id='table.info.html')
+	div.table-info(ng-show="table && table.gameStarted")
+		div.info.alert.alert-info
+			span.caption Boot Value:
+			span.value.boot-amount ${{table.boot | number}} 
+			span.caption Pot Limit:
+			span.value.pot-limit ${{table.potLimit | number}} 
+			span.caption Max Bet:
+			span.value.max-bet ${{table.maxBet | number}} 
+
+
+script(type='text/ng-template',id='table.notifications.html')
+	div.table-notifications-info
+		div.text-message.alert.alert-warning {{message}}	 
+script(type='text/ng-template',id='side.player.html')
+	div.side-player-outer(ng-class="{winner:player.winner,turn:player.turn,packed:player.packed,active:player.active,inactive:!player.active}")
+		div.side-player-container
+			div.icon.icon-deal(ng-show='player.deal')
+			div.winner-text.alert-warning Winner
+			div.invite(ng-show='!player') 
+				span.icon.icon-md.users
+				span.text Invite Friend
+			div.player-info(ng-show='player')
+				div.last-action.alert-warning {{player.lastAction}}
+				div.pic.icon
+				div.name(slot='{{player.slot}}') {{ player.playerInfo.userName}}
+				div.last-bet ${{ player.lastBet || player.playerInfo.chips | number}}
+			div.cards(ng-if="table && table.gameStarted && player && player.active && !player.packed")
+				div.cards-set(playing-cards-set="",slot='player.slot',card-set='player.cardSet',lmargin="20")
+
+script(type='text/ng-template',id='main.player.html')
+	div.current-player-outer(ng-class="{winner:player.winner,turn:player.turn,packed:player.packed,active:player.active,inactive:!player.active}")
+		div.current-player
+			div.icon.icon-deal(ng-show='player.deal')
+			div.winner-text.alert-warning Winner
+			div.info
+				div.pic.icon
+				div.text-info
+					div.last-action {{player.lastAction}}
+					span.name(slot='{{player.slot}}')   {{player.playerInfo.userName}}
+					span.icon.icon-chips
+					span.chips ${{player.playerInfo.chips | number}}
+			div.cards
+				div.cards-set(ng-show='table && table.gameStarted && player && player.active && !player.packed',playing-cards-set="",player="player",see-my-cards="seeMyCards()",slot='player.slot',card-set='player.cardSet')
+	form.form.horizontal
+		div.actions.form-group(ng-show='player.turn && !player.winner')
+			button.btn.btn-danger.pack(ng-disabled='disableActions',ng-click='pack()') Pack
+			button.btn.btn-danger.minus(ng-disabled='disableMinus || disableActions',ng-click='minus()') -
+			input.disable.bet-value.form-control(value="${{possibleBet | number}}",readonly="readonly",slot='{{player.slot}}',cid='{{player.id}}',tableid='{{player.tableId}}')
+			button.btn.btn-success.plus(ng-disabled='disablePlus || disableActions',ng-click='plus()') +
+			button.btn.btn-primary.blind(ng-disabled='player.playerInfo.chips<possibleBet || disableActions',ng-show='player.cardSet.closed',ng-click='blind()') Blind
+			button.btn.btn-primary.chaal(ng-disabled='player.playerInfo.chips<possibleBet || disableActions',ng-show='!player.cardSet.closed',ng-click='chaal()') Chal
+			button.btn.btn-success.card-show(ng-disabled='player.playerInfo.chips<possibleBet || disableActions',ng-show='table.isShowAvailable',ng-click='show()') Show
+			button.btn.btn-warning.side-show(ng-disabled='disableActions',ng-show='player.isSideShowAvailable && !table.isShowAvailable',ng-click='sideshow()') Side Show
+		div.side-show-actions.form-group(ng-show='player.sideShowTurn')
+			span.side-show-message {{player.sideShowMessage}}
+			button.btn.btn-danger.deny(ng-click='denySideShow()') 
+				span.glyphicon.glyphicon-remove 
+			button.btn.btn-success.accept(ng-click='acceptSideShow()') 
+				span.glyphicon.glyphicon-ok 
+div.table.play.container
+	div.row
+		div.col-xs-4.col-md-4
+			span.logo.logo-default
+		div.col-xs-4.col-md-4
+			div.table-dealer(table-dealer="",dealer="dealer")
+		div.col-xs-4.col-md-4
+	div.row
+		div.col-xs-4.col-md-4.seat3.seat
+			div.side-player.right(side-player="",table="table",player="seat3") 
+		div.col-xs-4.col-md-4.table-center
+			div.table-bet(table-bet="", table="table",)
+			div.table-notifications(table-notifications="",show-message="showMessage",message="gameCountdownMessage")
+			div.general-notification(table-notifications="",show-message="showNotification",message="notificationMessage")
+		div.col-xs-4.col-md-4.seat4.seat
+			div.side-player.left(side-player="",table="table",player="seat4") 
+	div.row
+		div.col-xs-4.col-md-4.seat2.seat
+			div.side-player.right(side-player="",table="table",player="seat2") 
+		div.col-xs-4.col-md-4
+		div.col-xs-4.col-md-4.seat5.seat
+			div.side-player.left(side-player="",table="table",player="seat5")
+	div.row
+		div.col-xs-12.col-md-12.seat1.seat.main
+			div.main-player(main-player="",place-bet="placeBet()",place-pack="placePack()",player="currentPlayer",table="table",see-my-cards='seeMyCards()',respond-side-show='respondSideShow()',place-side-show='placeSideShow()')
+	div.row
+		div.col-xs-12.col-md-12
+			div(table-info="",table="table")

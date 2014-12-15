@@ -1,0 +1,655 @@
+body {
+	padding: 20px;
+	font: 14px sans-serif, "Lucida Grande", Helvetica, Arial;
+	border: solid 4px rgb(9, 82, 127);
+}
+.icon {
+	background: url('/images/grid-icons.png');
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	.default {
+		background-position: -225px -298px;
+	}
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes border-animate {
+	from {
+		border: solid 2px rgba(255, 0, 0, .5);
+	}
+	to {
+		border: solid 2px rgba(255, 237, 0, .9);
+	}
+}
+@keyframes  border-animate {
+	from {
+		border: solid 2px rgba(255, 0, 0, .5);
+	}
+	to {
+		border: solid 2px rgba(255, 237, 0, .9);
+	}
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes border-animate-text {
+	from {
+		color: red;
+	}
+	to {
+		color: yellow;
+	}
+}
+@keyframes  border-animate-text {
+	from {
+		color: red;
+	}
+	to {
+		winner: yellow;
+	}
+}
+a {
+	color: #00B7FF;
+}
+.animate-bet {
+	display: none;
+	position: absolute;
+	width: 127px;
+	z-index: 99;
+	text-align: center;
+}
+.right-align {
+	text-align: right;
+}
+.cards-closed-set {
+	.playing-card {
+		border: solid 1px #97C94D;
+	}
+}
+.dealer {
+	width: 100px;
+	height: 100px;
+	margin: auto;
+	.icon.icon-large.dealer {
+		display: block;
+		height: 100px;
+		background-position: -420px -149px;
+	}
+}
+.icon-md {
+	display: block;
+	width: 51px;
+	height: 51px;
+}
+.icon-deal {
+	background-position: -563px -456px;
+	width: 27px;
+	height: 27px;
+}
+.icon.users {
+	background-position: -397px -9px;
+}
+.icon-user {
+	background-position: -325px -517px;
+}
+.icon-user.white {
+	background-position: -330px -542px;
+}
+.icon-chips {
+	background-position: -435px -460px;
+}
+.logo {
+	width: 167px;
+	height: 95px;
+	display: block;
+	background: url('/images/grid-icons.png');
+	&.logo-default {
+		background-position: -21px -558px;
+	}
+}
+.start-up {
+	.main-container {
+		margin-top: 20px;
+	}
+	.icon-user {
+		width: 34px;
+		height: 26px;
+		background-position: -325px -517px;
+	}
+	.btn.join {
+		.text-cont {
+			display: block;
+			width: 77px;
+			margin: auto;
+		}
+		.icon-join {
+			width: 18px;
+			height: 21px;
+			background-position: -404px -541px;
+			display: block;
+			float: left;
+		}
+		.text {
+			display: block;
+			padding: 0px 8px;
+			float: left;
+		}
+	}
+	.btn.btn-default {
+		padding: 0;
+		height: 34px;
+	}
+	.header {
+		.logo {
+			margin: auto;
+		}
+		text-align: center;
+		.title {
+			text-align: center;
+			display: inline-block;
+			margin: 0;
+			padding: 0;
+			.icon {
+				width: 50px;
+				height: 50px;
+				float: left;
+				&.cards {
+					background-position: -329px -321px;
+				}
+			}
+			.text {
+				display: block;
+				float: left;
+				margin: 0px 10px;
+				padding: 12px 0px;
+			}
+		}
+	}
+}
+.play-menu-container {
+	.logo {
+		margin: auto;
+	}
+	.play-menu-panel {
+		.play-menu-header {
+			.icon-user {
+				width: 25px;
+				height: 19px;
+				margin-right: 4px;
+			}
+		}
+		.player-menu-info {
+			.icon-chips {
+				display: block;
+				float: left;
+			}
+			.chips {
+				float: left;
+				margin: 4px 6px;
+			}
+		}
+	}
+	.play-menu {
+		text-align: center;
+		.menu {
+			width: 120px;
+			height: 100px;
+			margin: 20px;
+			word-wrap: break-word;
+			white-space: normal;
+			.icon {
+				display: block;
+				width: 50px;
+				height: 50px;
+				margin: auto;
+				&.tournament {
+					background-position: -160px -296px;
+				}
+				&.pub-table {
+					background-position: -260px -297px;
+				}
+				&.pvt-table {
+					background-position: -106px -297px;
+				}
+			}
+			.text {
+				margin: -4px 0px;
+				display: block;
+			}
+		}
+	}
+}
+.playing-card {
+	width: 70px;
+	height: 100px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	&.closed {
+		background: url('../images/deck-bg.jpg');
+	}
+	.card {
+		position: relative;
+		background: white;
+		width: 100%;
+		height: 100%;
+		border: solid 1px rgb(145, 145, 145);
+		.icon.spade.icon-small {
+			background-position: -10px -345px;
+		}
+		.icon.diamond.icon-small {
+			background-position: -90px -345px;
+		}
+		.icon.heart.icon-small {
+			background-position: -37px -345px;
+		}
+		.icon.club.icon-small {
+			background-position: -65px -345px;
+		}
+		.icon-small {
+			width: 25px;
+			height: 25px;
+			position: absolute;
+		}
+		.icon-small.left {
+			top: 23px;
+			left: 3px;
+		}
+		.icon-small.right {
+			top: 93px;
+			right: 0px;
+		}
+		.icon-large {
+			width: 44px;
+			height: 48px;
+			position: absolute;
+		}
+		.icon-large.center {
+			top: 44px;
+			right: 1px;
+		}
+		.icon {
+			&.icon-large {
+				&.spade, &.diamond, &.heart, &.club {
+					&.Q {
+						width: 51px;
+						height: 58px;
+						top: 35px;
+						background-position: -139px -434px;
+					}
+					&.K {
+						width: 51px;
+						height: 58px;
+						top: 35px;
+						background-position: -75px -429px;
+					}
+					&.J {
+						width: 51px;
+						height: 58px;
+						top: 35px;
+						background-position: -14px -425px;
+					}
+				}
+				&.spade {
+					background-position: -3px -373px;
+				}
+				&.diamond {
+					background-position: -136px -373px;
+				}
+				&.heart {
+					background-position: -48px -373px;
+				}
+				&.club {
+					background-position: -93px -373px;
+				}
+			}
+		}
+		.container {
+			position: relative;
+		}
+		.text-small {
+			position: absolute;
+			font-size: 20px;
+			width: 20px;
+			text-align: center;
+			font-weight: bold;
+		}
+		.text-small.right {
+			top: 130px;
+			right: 9px;
+		}
+		.text-small.left {
+			top: -1px;
+			left: 6px;
+		}
+		.text-large {
+			width: 68px;
+			height: 68px;
+			font-size: 21px;
+			color: white;
+			text-align: center;
+			display: block;
+			padding: 16px 1px;
+		}
+	}
+}
+.table {
+	.logo {
+		float: right;
+	}
+	.table-info {
+		margin-top: 10px;
+		text-align: center;
+		.caption {
+			font-weight: bold;
+			margin-left: 14px;
+		}
+		.value {
+			margin-left: 4px;
+		}
+	}
+	.table-center {
+		position: relative;
+		.general-notification {
+			position: absolute;
+			width: 100%;
+			top: 128px;
+			z-index: 99;
+		}
+	}
+	&.play {
+		.winner-text {
+			font-size: 17px;
+			color: green;
+			position: absolute;
+			text-align: center;
+			top: -38px;
+			display: none;
+		}
+		.seat {
+			&.main {
+				height: 175px;
+			}
+			height: 130px;
+			position: relative;
+		}
+		.invite {
+			.text {
+				text-align: center;
+				display: block;
+			}
+			.icon {
+				margin: auto;
+			}
+		}
+		.player-info {
+			text-align: center;
+		}
+		.side-player-outer {
+			&.winner {
+				border: solid 2px orange;
+				-webkit-animation: border-animate 3s infinite; /* Chrome, Safari, Opera */
+				animation: border-animate 3s infinite;
+				.winner-text {
+					display: block;
+					-webkit-winner: border-animate-text 2s infinite; /* Chrome, Safari, Opera */
+					animation: border-winner-text 2s infinite;
+					font-size: 14px;
+					top: -34px;
+					width: 88px;
+				}
+			}
+			&.inactive, &.packed {
+				opacity: .4;
+			}
+			&.turn {
+				border: solid 2px orange;
+				-webkit-animation: border-animate 3s infinite; /* Chrome, Safari, Opera */
+				animation: border-animate 3s infinite;
+			}
+			width: 120px;
+			height: 112px;
+			margin: auto;
+			padding: 10px;
+		}
+		.side-player-container {
+			border: solid 1px #e2e2e2;
+			padding: 7px;
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+		.side-player {
+			&.left {
+				.icon-deal {
+					position: absolute;
+					top: -26px;
+					left: -21px;
+				}
+			}
+			&.right {
+				.icon-deal {
+					position: absolute;
+					top: -27px;
+					left: 89px;
+				}
+			}
+			height: 100%;
+			.player-info {
+				.pic {
+					position: absolute;
+					width: 70px;
+					height: 50px;
+					border: solid 1px #e2e2e2;
+					top: 18px;
+					left: 12px;
+					background-position: -668px -140px;
+				}
+				.last-action {
+					top: 91px;
+					height: 20px;
+					left: 0;
+					position: absolute;
+					width: 100%;
+				}
+				.name {
+					position: absolute;
+					top: 0;
+					height: 23px;
+					width: 100%;
+					overflow: hidden;
+				}
+				.last-bet {
+					position: absolute;
+					bottom: 0;
+					width: 100%;
+				}
+			}
+			&.left {
+				.cards {
+					left: -85px;
+				}
+			}
+			&.right {
+				.cards {
+					left: 91px;
+				}
+			}
+			.cards {
+				.cards-set {
+					height: 70px;
+				}
+				width: 147px;
+				height: 60px;
+				bottom: 26px;
+				.see-cards {
+					display: none;
+				}
+			}
+			.playing-card {
+				width: 50px;
+				height: 70px;
+				.card {
+					zoom: 0.69;
+				}
+			}
+		}
+		.side-show-actions {
+			margin-top: 10px;
+			height: 44px;
+			text-align: center;
+			margin: auto;
+			button {
+				margin: 4px;
+			}
+			.side-show-message {
+				display: inline-block;
+				margin: 4px;
+			}
+		}
+		.actions {
+			margin-top: 10px;
+			height: 44px;
+			text-align: center;
+			margin: auto;
+			button {
+				margin: 4px;
+			}
+			.bet-value {
+				width: 100px;
+				display: inline-block;
+				margin: 4px;
+			}
+		}
+		.cards {
+			position: absolute;
+			right: -58px;
+			bottom: 26px;
+			width: 147px;
+			height: 109px;
+			// background: rgba(0, 0, 0, .2);
+			.cards-set {
+				position: relative;
+				width: 100%;
+				height: 109px;
+				z-index: 10;
+				.see-cards {
+					z-index: 11;
+					bottom: 20px;
+					left: 53px;
+					position: absolute;
+				}
+			}
+		}
+		.current-player-outer {
+			.icon-deal {
+				top: -22px;
+				position: absolute;
+				left: -20px;
+			}
+			&.winner {
+				border: solid 2px orange;
+				-webkit-animation: border-animate 3s infinite; /* Chrome, Safari, Opera */
+				animation: border-animate 3s infinite;
+				.winner-text {
+					display: block;
+					-webkit-animation: winner-animate-text 2s infinite; /* Chrome, Safari, Opera */
+					animation: winner-animate-text 2s infinite;
+					width: 251px;
+				}
+			}
+			&.inactive, &.packed {
+				opacity: .4;
+			}
+			&.turn {
+				border: solid 2px orange;
+				-webkit-animation: border-animate 3s infinite; /* Chrome, Safari, Opera */
+				animation: border-animate 3s infinite;
+			}
+			width: 296px;
+			height: 136px;
+			margin: auto;
+			.current-player {
+				&.winner {
+					.winner-text {
+						display: block;
+					}
+				}
+				position: relative;
+				border: solid 1px #e2e2e2;
+				padding: 10px;
+				height: 116px;
+				margin: 10px;
+				.info {
+					height: 50px;
+					.last-action {
+						height: 20px;
+					}
+					.last-action, .name {
+						display: block;
+						margin-left: 5px;
+					}
+					.icon-chips {
+						float: left;
+					}
+					.chips {
+						float: left;
+						display: block;
+						margin: 3px;
+					}
+				}
+				.pic {
+					height: 94px;
+					width: 100px;
+					border: solid 1px #e2e2e2;
+					display: block;
+					float: left;
+					background-position: -477px 1px;
+				}
+				.text-info {
+					margin-left: 5px;
+					padding-top: 30px;
+					width: 140px;
+					float: left;
+				}
+			}
+		}
+		.table-bet {
+			.bet-info {
+				display: none;
+			}
+			top: 62px;
+			padding: 10px;
+			height: 92px;
+			margin: auto;
+			text-align: center;
+			position: absolute;
+			left: 0;
+			right: 0;
+			width: 145px;
+		}
+		.table-notifications {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 15px;
+		}
+		.table-notifications-info {
+			.text-message {
+				text-align: center;
+			}
+			.notification {
+				position: absolute;
+				top: 0;
+				width: 100%;
+				display: none;
+			}
+		}
+		.table-dealer {
+			padding: 10px;
+			height: 97px;
+			margin: auto;
+			text-align: center;
+		}
+	}
+}

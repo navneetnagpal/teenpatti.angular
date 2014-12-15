@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	div.panel.panel-warning.start-up
+		div.panel-heading.header
+			span.logo.logo-default
+		div.panel-body 
+			div(ng-controller='startUp')
+				div#register.container.main-container
+					form.form
+						div.form-group
+							div.row
+								div.col-sm-12.col-xs-12									
+									div.col-sm-10.col-xs-9
+										div.input-group
+											span.input-group-btn
+												button.btn.btn-default
+													span.icon.icon-user
+											input.form-control(placeholder='Enter Name',ng-model='userName')
+									div
+										button.col-sm-2.col-xs-3.join(ng-click='register()',class='btn btn-success') 
+											div.text-cont
+												span.icon.icon-join
+												span.text Join
+						span(id='message')
+		

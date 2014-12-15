@@ -1,0 +1,22 @@
+div.play-menu-container
+	div.container
+		span.logo.logo-default
+	div.panel.panel-primary.play-menu-panel
+		div.panel-heading.play-menu-header
+			span.icon.icon-user.white
+			span.caption Welcome, {{userName}}
+		div.panel-body
+			div.player-menu-info.clearfix
+				span.icon.icon-chips
+				span.chips ${{chips | number}}
+			div.container
+				div.col-md-12.play-menu
+					button.menu.play-tour.btn.btn-info(ng-disabled='true',ng-click='playTour()') 
+						span.icon.tournament 
+						span.text Play Tournament
+					button.menu.play-tab.btn.btn-success(ng-disabled='chips<10000',ng-click='playTable()') 
+						span.icon.pub-table 
+						span.text Play Table
+					button.menu.play-pvt-tab.btn.btn-warning(ng-disabled='true')
+						span.icon.pvt-table 
+						span.text Play Private
