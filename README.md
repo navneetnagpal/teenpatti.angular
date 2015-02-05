@@ -15,7 +15,7 @@ Open Git bash
 - setup your database path
 - run rundb.bat file
 - Goto code folder
-- execute npm start
+- execute node app.js
 
 Enjoy the game!!!
 ========
