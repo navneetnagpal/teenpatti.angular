@@ -11,6 +11,7 @@ Open Git bash
 - set mongo db
 - http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
 - start mongodb
+- modify your mongodb configration in /code/lib/dal.js
 - Edit rundb.bat
 - setup your database path
 - run rundb.bat file
