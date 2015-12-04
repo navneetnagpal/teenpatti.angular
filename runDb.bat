@@ -1,1 +1,1 @@
-C:\mongodb\bin\mongod.exe --dbpath D:\projects.git\game.test\data
+C:\mongodb\bin\mongod.exe --dbpath D:\projects.git\teenpatti.angular\data

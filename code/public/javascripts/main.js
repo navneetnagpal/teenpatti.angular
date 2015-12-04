@@ -380,7 +380,6 @@ angular.module('teenPatti.directives').directive('tableNotifications', [
             templateUrl: 'table.notifications.html',
             link: function(scope, element, attrs) {
                 scope.$watch('showMessage', function(newVal, oldVal) {
-                    console.log(['showMessage', newVal, oldVal]);
                     if (newVal === true) {
                         element.find('.text-message').fadeIn('slow');
                     } else if (newVal === false) {
@@ -451,16 +450,14 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
     function($rootScope, $filter, $scope, cardService) {
         var socket;
         if ($rootScope.userInfo) {
-            socket = io.connect(window.location.protocol + "//" + window.location.hostname);
+            socket = io.connect(window.location.protocol + "//" + window.location.hostname + (window.location.port!=80?":"+window.location.port:"" ) );
             initSocketEvents();
         }
         $scope.currentPlayer = {};
         $scope.seatingInfo = {};
         $scope.seatingInfoById = {};
         $scope.dealSeat = "";
-        $scope.currentTurn = "";
-        // $scope.gameCountdownMessage = "Your game will begin in 0 seconds";
-        // $scope.showMessage = true;
+        $scope.currentTurn = ""; 
         $scope.seeMyCards = function() {
             socket.emit('seeMyCards', $scope.currentPlayer);
         }
@@ -555,7 +552,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
 
         function initSocketEvents() {
             socket.on('betPlaced', function(args) {
-                console.log(['betPlaced', args]);
 
                 $scope.$broadcast('performBetAnimation', {
                     bet: args.bet.amount,
@@ -581,7 +577,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
             });
 
             socket.on('sideShowResponded', function(args) {
-                console.log(['sideShowResponded', args]);
 
                 function sideShowRespond() {
                     $scope.table = args.table;
@@ -604,7 +599,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
                 }
             });
             socket.on('sideShowResult', function(args) {
-                console.log(['sideShowResult', args]);
 
                 function sideShowResult() {
                     $scope.table = args.table;
@@ -626,7 +620,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
             });
 
             socket.on('sideShowPlaced', function(args) {
-                console.log(['sideShowPlaced', args]);
 
                 $scope.$broadcast('performBetAnimation', {
                     bet: args.bet.amount,
@@ -658,7 +651,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
             });
 
             socket.on('showWinner', function(args) {
-                console.log(['showWinner', args]);
 
                 function showWinner() {
                     $scope.table = args.table;
@@ -719,7 +711,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
             });
 
             socket.on('playerPacked', function(args) {
-                console.log(['playerPacked', args]);
                 $scope.table = args.table;
                 var lastActionPlayer = $scope[$scope.seatingInfoById[args.placedBy]];
                 if (lastActionPlayer) {
@@ -736,7 +727,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
             });
             socket.on('connectionSuccess', function(args) {
                 $rootScope.userInfo.clientId = args.id;
-                console.log('connected requesting for table join');
                 socket.emit('joinTable', $rootScope.userInfo);
             });
             socket.on('tableJoined', function(args) {
@@ -744,7 +734,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
                 $scope.seatingInfoById[args.id] = "currentPlayer";
                 $scope.currentPlayer = args;
                 setOtherPlayers($scope.currentPlayer, args.otherPlayers);
-                console.log(['primaryPlayer:', $scope.currentPlayer]);
                 $scope.$digest();
             });
             socket.on('playerLeft', function(args) {
@@ -764,7 +753,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
             });
 
             socket.on('gameCountDown', function(args) {
-                console.log(['gameCountdownMessage', args]);
                 var counter = args.counter;
                 if ($scope.table) {
                     $scope.table.showAmount = false;
@@ -786,13 +774,11 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
 
 
             socket.on('cardsSeen', function(args) {
-                console.log(['cardsSeen', args]);
                 $scope.currentPlayer.cardSet.cards = args.cardsInfo;
                 $scope.currentPlayer.cardSet.closed = false;
                 $scope.$digest()
             });
             socket.on('playerCardSeen', function(args) {
-                console.log(['playerCardSeen', args]);
                 $scope[$scope.seatingInfoById[args.id]].lastAction = "Card Seen";
                 for (var player in args.players) {
                     $scope[$scope.seatingInfoById[args.players[player].id]].isSideShowAvailable = args.players[player].isSideShowAvailable;
@@ -801,12 +787,10 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
             });
 
             socket.on('notification', function(args) {
-                console.log(['notification', args]);
                 showNotification(args);
             });
 
             socket.on('resetTable', function(args) {
-                console.log(['resetTable', args]);
                 $scope.table = args.table;
                 $scope.showMessage = false;
                 $scope.table.showAmount = false;
@@ -840,7 +824,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
                     });
                 });
                 setTimeout(function() {
-                    console.log(['startNew', args]);
                     $scope.table = args.table;
                     $scope.showMessage = false;
                     $scope.table.showAmount = true;
@@ -860,7 +843,6 @@ angular.module('teenPatti.controllers').controller('gamePlay', ['$rootScope', '$
                 $scope.seatingInfoById[args.id] = seat;
                 $scope[seat] = args;
                 $scope.$digest();
-                console.log(['newPlayerJoined:', seat, $scope[seat]]);
             });
         }
 
