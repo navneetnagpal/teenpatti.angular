@@ -1,7 +1,9 @@
 teenpatti.angular
 =================
-
-Teen patti game developed on angular, node.js, mongo db, express, sockets. 
+![alt tag](https://github.com/navneetnagpal/teenpatti.angular/blob/master/3_patti.png)
+![alt tag](https://github.com/navneetnagpal/teenpatti.angular/blob/master/3_patti-1.png)
+![alt tag](https://github.com/navneetnagpal/teenpatti.angular/blob/master/3_patti-2-play.png)
+- Teen patti game developed on angular, node.js, mongo db, express, sockets. 
 
 To Run
 ================
