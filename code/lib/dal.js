@@ -8,7 +8,7 @@ if (config.database.mode==='local'){
 	/*"mongodb://" + config.mongo.user + ":nopassword@" + config.mongo.host + ":" + config.mongo.port + "/" + config.mongo.db;*/ // "username:password@example.com/mydb"
 }
 var collections = ["users", "tables","sessions"];
-var db = require("mongojs").connect(databaseUrl, collections);
+var db = require("mongojs")(databaseUrl, collections);
 
 
 
